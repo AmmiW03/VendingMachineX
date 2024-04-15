@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+
+  <style name="MainTheme" parent="MainTheme.Base">
+    <!-- as of xamarin.forms 4.6 the theme has moved into the forms binary -->
+    <!-- if you want to override anything you can do that here. -->
+    <!-- underneath are a couple of entries to get you started. -->
+
+    <!-- set theme colors from https://aka.ms/material-colors -->
+    <!-- colorprimary is used for the default action bar background -->
+    <!--<item name="colorprimary">#2196f3</item>-->
+    <!-- colorprimarydark is used for the status bar -->
+    <!--<item name="colorprimarydark">#1976d2</item>-->
+    <!-- coloraccent is used as the default value for colorcontrolactivated
+         which is used to tint widgets -->
+    <!--<item name="coloraccent">#ff4081</item>-->
+  </style>
+</resources>
