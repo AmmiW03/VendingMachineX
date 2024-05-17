@@ -4,6 +4,7 @@
              x:Class="VendingMachineX.NewMachine"
              BackgroundColor="#1287BC"   
              xmlns:PanCake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <StackLayout>
@@ -13,7 +14,7 @@
                         <Grid ColumnDefinitions="*,Auto" BackgroundColor="#61CAFA" 
                               HorizontalOptions="FillAndExpand" Margin="0,0,0,0">
                             <Image Source="fondoHA" HorizontalOptions="End"/>
-                            <Label Text="DATOS DEL&#10;CLIENTE" Padding="20,35,0,0" FontSize="Subtitle" TextColor="Black"/>
+                            <Label Text="DATOS DEL&#10;CLIENTE" Padding="20,25,0,0" FontSize="20" TextColor="Black"/>
                         </Grid>
                     </PanCake:PancakeView>
                 </StackLayout>
@@ -21,44 +22,42 @@
                 <StackLayout Grid.Row="1" BackgroundColor="#61CAFA" Margin="-1,-100,0,0" Padding="0,0,0,0">
                     <PanCake:PancakeView Grid.Row="1" CornerRadius="40,40,0,0">
 
-                        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto" Padding="60,55,60,10" BackgroundColor="White" HeightRequest="350">
+                        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto" Padding="60,55,60,10" BackgroundColor="White" HeightRequest="450">
                             <!-- Row 0 -->
+                            <Label Text="Datos" TextColor="Black" FontSize="17" Grid.Row="0"
+                                    FontAttributes="Bold" HorizontalTextAlignment="Start"
+                                    HorizontalOptions="StartAndExpand" Padding="-40,0,0,2"/>
 
-                            <Label Text="Datos" TextColor="Black" FontSize="17" 
-                               FontAttributes="Bold" HorizontalTextAlignment="Start"
-                               HorizontalOptions="StartAndExpand" Padding="-40,0,0,0"/>
+                            <maps:Map x:Name="maps" WidthRequest="0" HeightRequest="200" 
+                                      Padding="0,0,0,0" Grid.Row="1"/>        
 
-                            <Label Grid.Row="1" 
+                            <Label Grid.Row="2" 
                                     Text="Nombre del contacto" FontSize="14" TextColor="Black"
                                     HorizontalOptions="Start" VerticalOptions="Center"/>
 
-                            <Entry Grid.Row="1" 
+                            <Entry Grid.Row="2" 
                                     HorizontalOptions="End" VerticalOptions="Center"
                                     IsReadOnly="False" WidthRequest="90"/>
 
                             <!-- Row 1 -->
-                            <Label Grid.Row="2" 
-                                    Text="Teléfono de contacto" FontSize="14" TextColor="Black"
-                                    HorizontalOptions="Start" VerticalOptions="Center"/>
-
-                            <Entry Grid.Row="2"  
-                                    HorizontalOptions="End" VerticalOptions="Center"
-                                    IsReadOnly="False"  WidthRequest="90"/>
-
-                            <!-- Row 2 -->
                             <Label Grid.Row="3" 
-                                    Text="Dirección" FontSize="14" TextColor="Black"
+                                    Text="Teléfono de contacto" FontSize="14" TextColor="Black"
                                     HorizontalOptions="Start" VerticalOptions="Center"/>
 
                             <Entry Grid.Row="3"  
                                     HorizontalOptions="End" VerticalOptions="Center"
-                                    IsReadOnly="False" WidthRequest="90" Placeholder="Longitud" HorizontalTextAlignment="Center"/>
+                                    IsReadOnly="False"  WidthRequest="90"/>
 
-                            <Entry Grid.Row="4"  
+                            <!-- Row 2 -->
+                            <Label Grid.Row="4" Margin="0,0,0,30"
+                                    Text="Dirección" FontSize="14" TextColor="Black"
+                                    HorizontalOptions="Start" VerticalOptions="Center"/>
+
+                            <Entry Grid.Row="4" Margin="0,0,0,30"
                                     HorizontalOptions="End" VerticalOptions="Center"
-                                    IsReadOnly="False" WidthRequest="90" Placeholder="Latitud" HorizontalTextAlignment="Center"/>
+                                    IsReadOnly="False" WidthRequest="90" Placeholder="Ingrese la ubicación" FontSize="10" HorizontalTextAlignment="Center"/>
 
-                            <Grid Grid.Row="5" Padding="0,-10,0,0">
+                            <Grid Grid.Row="6" Padding="0,-10,0,0">
                                 <Button Text="subir"  CornerRadius="20" BackgroundColor="#1287BC" 
                                     Margin="60,40" FontAttributes="Bold" HeightRequest="45"  TextColor="Black"
                                     VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>

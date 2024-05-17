@@ -1,6 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+//using Plugin.CloudFirestore;
 
 namespace VendingMachineX
 {
@@ -15,6 +16,7 @@ namespace VendingMachineX
 
         protected override void OnStart()
         {
+            
         }
 
         protected override void OnSleep()

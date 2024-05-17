@@ -3,14 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VendingMachineX.Menu"
              xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
+             xmlns:PanCake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
+             xmlns:viewModel="clr-namespace:VendingMachineX.ViewModels;assembly=VendingMachineX"
              android:TabbedPage.ToolbarPlacement="Bottom"
              BackgroundColor="#1287BC"            
-             xmlns:PanCake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"                
              BarBackgroundColor="GhostWhite"
              BarTextColor="Black"
-            NavigationPage.HasNavigationBar="False">
+             NavigationPage.HasNavigationBar="False">
 
     <ContentPage Title="Avisos" IconImageSource="aviso" >
+
+        <ContentPage.BindingContext>
+            <viewModel:MenuViewModel/>
+        </ContentPage.BindingContext>
+        
         <ScrollView>
             <!-- Centro CAI, versión Beta
                   Universidad Politécnica de Tecámac
@@ -23,18 +30,23 @@
                         <Grid ColumnDefinitions="*,Auto" BackgroundColor="#61CAFA" 
                               HorizontalOptions="FillAndExpand" Margin="0,0,0,0">
                             <Image Source="fondoHA" HorizontalOptions="End"/>
-                            <Label Text="MIS TAREAS" Padding="20,35,0,0" FontSize="Subtitle" TextColor="Black"/>
+                            <Label Text="MIS TAREAS" Padding="20,35,0,0" FontSize="20" TextColor="Black"/>
                         </Grid>
                     </PanCake:PancakeView>
                 </StackLayout>
                 <!-- Contenido -->
-                <StackLayout Grid.Row="1" BackgroundColor="#61CAFA" Margin="-1,-100,0,0">
+                <StackLayout Grid.Row="1" BackgroundColor="#61CAFA" Margin="0,-100,0,0">
                     <PanCake:PancakeView Grid.Row="1" CornerRadius="0,80,0,0">
-                        <Grid RowDefinitions="Auto,Auto,Auto,Auto" Padding="20,45,20,0" BackgroundColor="White" HeightRequest="350">
-                            <Button Grid.Row="0" HeightRequest="100" VerticalOptions="Start" BorderColor="Transparent" BorderWidth="1"
-                                        BackgroundColor="#3498DB " Text="Máquina - No. Serie" TextColor="Black" CornerRadius="30"/>
-                            <Button Grid.Row="2" HeightRequest="100" VerticalOptions="Start" BorderColor="Black" BorderWidth="1"
-                                        BackgroundColor="Transparent" Text="Máquina - No. Serie" TextColor="Black" CornerRadius="30"/>
+                        <Grid RowDefinitions="Auto,Auto,Auto,Auto" Padding="20,0,20,0" BackgroundColor="White" HeightRequest="350">
+                            <PanCake:PancakeView Grid.Row="1" CornerRadius="0,80,0,0">
+                                <ListView ItemsSource="{Binding Tasks}" ItemTapped="OnItemTapped">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextCell Text="{Binding Machine}" Detail="{Binding Product}"/>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </PanCake:PancakeView>
                         </Grid>
                     </PanCake:PancakeView>
                 </StackLayout>
@@ -44,57 +56,60 @@
             </Grid>
         </ScrollView>
     </ContentPage>
-    
+
     <ContentPage Title="Máquinas" IconImageSource="maquina">
-        <ScrollView>
-            <!-- Centro CAI, versión Beta
+        <!-- Centro CAI, versión Beta
                   Universidad Politécnica de Tecámac
                   Desarrollador: Ammi Wang Almazán -->
 
+        <ContentPage.BindingContext>
+            <viewModel:MenuViewModel/>
+        </ContentPage.BindingContext>
+
             <Grid RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="0">
-                <!-- Encabezado -->
-                <StackLayout Grid.Row="0" BackgroundColor="#61CAFA" HeightRequest="200" Margin="0,0,0,0">
-                    <PanCake:PancakeView Grid.Row="0" CornerRadius="0,0,0,0">
-                        <Grid ColumnDefinitions="*,Auto" BackgroundColor="#61CAFA" 
+            <!-- Encabezado -->
+            <StackLayout Grid.Row="0" BackgroundColor="#61CAFA" HeightRequest="200" Margin="0,0,0,0">
+                <PanCake:PancakeView Grid.Row="0" CornerRadius="0,0,0,0">
+                    <Grid ColumnDefinitions="*,Auto" BackgroundColor="#61CAFA" 
                               HorizontalOptions="FillAndExpand" Margin="0,0,0,0">
-                            <Image Source="fondoHA" HorizontalOptions="End"/>
-                            <Label Text="MÁQUINAS" Padding="20,35,0,0" FontSize="Subtitle" TextColor="Black"/>
-                            <Button Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#3498DB " 
+                        <Image Source="fondoHA" HorizontalOptions="End"/>
+                        <Label Text="MÁQUINAS" Padding="20,35,0,0" FontSize="20" TextColor="Black"/>
+                        <Button Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#3498DB " 
                                     Margin="0,15,15,0" VerticalOptions="Start" HorizontalOptions="End" 
                                     HeightRequest="50" WidthRequest="50" CornerRadius="25" Text="+" 
                                     TextColor="Black" FontSize="20" Clicked="NewMachine"/>
-                        </Grid>
-                    </PanCake:PancakeView>
-                </StackLayout>
-                <!-- Contenido -->
-                <StackLayout Grid.Row="1" BackgroundColor="#61CAFA" Margin="-1,-100,0,0">
-                    <PanCake:PancakeView Grid.Row="1" CornerRadius="0,80,0,0">
-                        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto" Padding="20,45,20,0" BackgroundColor="White" HeightRequest="350">
-                            <Label Grid.Row="0" Text="AQUI VA EL MAPA" TextColor="Black"/>
-                            <Label Grid.Row="2" Text="Detalles de la máquina" TextColor="Black"
+                    </Grid>
+                </PanCake:PancakeView>
+            </StackLayout>
+            <!-- Contenido -->
+            <StackLayout Grid.Row="1" BackgroundColor="#61CAFA" Margin="-1,-100,0,0">
+                <PanCake:PancakeView Grid.Row="1" CornerRadius="0,80,0,0">
+                    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto" Padding="20,45,20,0" BackgroundColor="White" HeightRequest="350">
+                        <!--<Label Grid.Row="0" Text="AQUI VA EL MAPA" TextColor="Black"/>-->
+                        <maps:Map x:Name="maps" WidthRequest="30" HeightRequest="210" MapType="Street" PinClicked="OnPinClicked"/>
+                        <Label Grid.Row="2" Text="Detalles de la máquina" TextColor="Black"
                                    FontSize="15" FontAttributes="Bold" VerticalOptions="End"/>
 
-                            <Label Grid.Row="3" Text="Ubicación: 19.665293, -98.866455" TextColor="Black"
-                                   FontSize="13" FontAttributes="None" VerticalOptions="Center"/>
+                        <Label Grid.Row="3" Text="Ubicación: " TextColor="Black"
+                                   FontSize="13" FontAttributes="None" VerticalOptions="Center" x:Name="lblAddress"/>
 
-                            <Label Grid.Row="4" Text="Contacto: Sr. Casa 2 - 5589852417" TextColor="Black"
-                                   FontSize="13" FontAttributes="None" VerticalOptions="Start"/>
-                        </Grid>
-                    </PanCake:PancakeView>
-                </StackLayout>
+                        <Label Grid.Row="4" Text="Contacto: " TextColor="Black"
+                                   FontSize="13" FontAttributes="None" VerticalOptions="Start" x:Name="lblContact"/>
+                    </Grid>
+                </PanCake:PancakeView>
+            </StackLayout>
 
-                <PanCake:PancakeView Grid.Row="2" CornerRadius="0,0,50,50" Margin="0,-1,0,0" BackgroundColor="White" HeightRequest="150" />
+            <PanCake:PancakeView Grid.Row="2" CornerRadius="0,0,50,50" Margin="0,-1,0,0" BackgroundColor="White" HeightRequest="150" />
 
-                <Grid Grid.Row="3" Padding="0,-10,0,0">
-                    <Button Text="ver máquina"  CornerRadius="20" BackgroundColor="White" 
+            <Grid Grid.Row="3" Padding="0,-10,0,0">
+                <Button Text="ver máquina"  CornerRadius="20" BackgroundColor="White" 
                         Margin="60,40" FontAttributes="Bold" HeightRequest="55" TextColor="Black"
                         VerticalOptions="CenterAndExpand" Clicked="MachineDetails"/>
-                </Grid>
-                
             </Grid>
-        </ScrollView>
+
+        </Grid>
     </ContentPage>
-    
+
     <ContentPage Title="Historial" IconImageSource="historial">
         <ScrollView>
             <!-- Centro CAI, versión Beta
@@ -108,7 +123,7 @@
                         <Grid ColumnDefinitions="*,Auto" BackgroundColor="#61CAFA" 
                               HorizontalOptions="FillAndExpand" Margin="0,0,0,0">
                             <Image Source="fondoHA" HorizontalOptions="End"/>
-                            <Label Text="HISTORIAL&#10;GENERAL" Padding="20,35,0,0" FontSize="Subtitle" TextColor="Black"/>
+                            <Label Text="HISTORIAL&#10;GENERAL" Padding="20,25,0,0" FontSize="20" TextColor="Black"/>
                         </Grid>
                     </PanCake:PancakeView>
                 </StackLayout>
@@ -133,6 +148,7 @@
                                 
                             </Grid>
                             <Label Grid.Row="3"  Text="Al apretar un boton se despiegla los historiales" HorizontalOptions="Center" TextColor="Black"/>
+                            
                         </Grid>
                     </PanCake:PancakeView>
                 </StackLayout>
