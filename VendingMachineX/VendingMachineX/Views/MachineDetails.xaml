@@ -19,10 +19,7 @@
                               HorizontalOptions="FillAndExpand" Margin="0,0,0,0">
                     <Image Source="fondoHA" HorizontalOptions="End"/>
                     <Label Text="DETALLES DE&#10;LA MÁQUINA" Padding="20,25,0,0" FontSize="20" TextColor="Black"/>
-                    <Button Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#3498DB " 
-                                    Margin="0,25,15,0" VerticalOptions="Start" HorizontalOptions="End" 
-                                    HeightRequest="50" WidthRequest="50" CornerRadius="25" Text="+" 
-                                    TextColor="Black" FontSize="20" Clicked="Products"/>
+                    
                 </Grid>
             </PanCake:PancakeView>
         </StackLayout>
@@ -40,7 +37,11 @@
                             <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" Padding="20,25,20,0" BackgroundColor="White" HeightRequest="600">
                                 <Grid BackgroundColor="Transparent" Grid.Row="0" Padding="0,0,0,0">
                                     <Label Text="{Binding Machine.SerialNumber, StringFormat='Máquina: {0}'}" FontAttributes="None" FontSize="13" 
-                                       TextColor="Black" VerticalOptions="CenterAndExpand" Padding="0,0,0,0"/>
+                                           TextColor="Black" VerticalOptions="CenterAndExpand" Padding="0,0,0,0"/>
+                                    <Button Grid.Column="0"  BackgroundColor="#3498DB " 
+                                            Margin="0,3,15,0" VerticalOptions="Start" HorizontalOptions="End" 
+                                            HeightRequest="40" WidthRequest="40" CornerRadius="20" Text="+" 
+                                            TextColor="Black" FontSize="20" Clicked="Products"/>
                                 </Grid>
                                 <Grid Grid.Row="1" Padding="0,20,0,-50">
 
@@ -83,7 +84,11 @@
                                             TextColor="Black" BorderColor="Black" BorderWidth="1" CornerRadius="10"
                                             HeightRequest="30"/>
                                 </Grid>
+                                
+                                
+
                             </Grid>
+                            
                         </PanCake:PancakeView>
                     </StackLayout>
                 </Grid>
@@ -91,7 +96,9 @@
         </ScrollView>
 
 
-        <PanCake:PancakeView Grid.Row="2" CornerRadius="0,0,50,50" Margin="0,-1,0,0" BackgroundColor="White" HeightRequest="20" />
+        <PanCake:PancakeView Grid.Row="2" CornerRadius="0,0,50,50" Margin="0,-1,0,0" BackgroundColor="White" HeightRequest="20">
+            
+        </PanCake:PancakeView>
 
     </Grid>
 </ContentPage>

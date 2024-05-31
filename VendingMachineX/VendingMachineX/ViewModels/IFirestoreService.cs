@@ -13,5 +13,8 @@ namespace VendingMachineX.ViewModels
         Task<Machine> GetMachine(String serialNumber);
         Task<List<MachineTask>> GetMachineTasks();
         Task MarkAsCompleted(MachineTask task);
+        Task<bool> AddMachine(Machine machine);
+        Task<int> GetProductsCount(String serialNumber);
+        Task AddProducts(String serialNumber, Product product);
     }
 }

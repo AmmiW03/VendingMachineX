@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using VendingMachineX.Classes;
 using VendingMachineX.Services;
 using VendingMachineX.Models;
+using System.Linq;
 
 #pragma warning disable CS4014
 
@@ -62,7 +63,7 @@ namespace VendingMachineX.ViewModels
         public async Task LoadMachines()
         {
             Machines = new ObservableCollection<MachineData>(await _firestoreService.GetMachines());
-        }
+        } 
         public async Task LoadTask()
         {
             Tasks = new ObservableCollection<MachineTask>(await _firestoreService.GetMachineTasks());
@@ -70,7 +71,11 @@ namespace VendingMachineX.ViewModels
         public async Task MarkAsCompleted(MachineTask task)
         {
             await _firestoreService.MarkAsCompleted(task);
-            Tasks.Remove(task);
+            var taskToRemove = Tasks.FirstOrDefault(D => D.Id == task.Id);
+            if(taskToRemove != null)
+            {
+                Tasks.Remove(taskToRemove);
+            }
         }
     }
 }

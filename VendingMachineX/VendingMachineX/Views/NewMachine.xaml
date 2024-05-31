@@ -2,10 +2,16 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VendingMachineX.NewMachine"
-             BackgroundColor="#1287BC"   
+             BackgroundColor="#1287BC"
+             xmlns:viewModel="clr-namespace:VendingMachineX.ViewModels;assembly=VendingMachineX"
              xmlns:PanCake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
              NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.BindingContext>
+        <viewModel:NewMachineViewModel/>
+    </ContentPage.BindingContext>
+
     <ContentPage.Content>
         <StackLayout>
             <Grid RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="0">
@@ -22,7 +28,7 @@
                 <StackLayout Grid.Row="1" BackgroundColor="#61CAFA" Margin="-1,-100,0,0" Padding="0,0,0,0">
                     <PanCake:PancakeView Grid.Row="1" CornerRadius="40,40,0,0">
 
-                        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto" Padding="60,55,60,10" BackgroundColor="White" HeightRequest="450">
+                        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto" Padding="60,35,60,10" BackgroundColor="White" HeightRequest="500">
                             <!-- Row 0 -->
                             <Label Text="Datos" TextColor="Black" FontSize="17" Grid.Row="0"
                                     FontAttributes="Bold" HorizontalTextAlignment="Start"
@@ -32,11 +38,11 @@
                                       Padding="0,0,0,0" Grid.Row="1"/>        
 
                             <Label Grid.Row="2" 
-                                    Text="Nombre del contacto" FontSize="14" TextColor="Black"
+                                    Text="Numero de Serie" FontSize="14" TextColor="Black"
                                     HorizontalOptions="Start" VerticalOptions="Center"/>
 
                             <Entry Grid.Row="2" 
-                                    HorizontalOptions="End" VerticalOptions="Center"
+                                    HorizontalOptions="End" VerticalOptions="Center" x:Name="txtSerialNumber" TextChanged="OnTextChanged"
                                     IsReadOnly="False" WidthRequest="90"/>
 
                             <!-- Row 1 -->
@@ -45,8 +51,8 @@
                                     HorizontalOptions="Start" VerticalOptions="Center"/>
 
                             <Entry Grid.Row="3"  
-                                    HorizontalOptions="End" VerticalOptions="Center"
-                                    IsReadOnly="False"  WidthRequest="90"/>
+                                    HorizontalOptions="End" VerticalOptions="Center" x:Name="txtPhoneNumber" TextChanged="OnTextChanged"
+                                    IsReadOnly="False"  WidthRequest="90" Keyboard="Numeric"/>
 
                             <!-- Row 2 -->
                             <Label Grid.Row="4" Margin="0,0,0,30"
@@ -54,14 +60,13 @@
                                     HorizontalOptions="Start" VerticalOptions="Center"/>
 
                             <Entry Grid.Row="4" Margin="0,0,0,30"
-                                    HorizontalOptions="End" VerticalOptions="Center"
+                                    HorizontalOptions="End" VerticalOptions="Center" x:Name="txtAddress" TextChanged="OnTextChanged"
                                     IsReadOnly="False" WidthRequest="90" Placeholder="Ingrese la ubicación" FontSize="10" HorizontalTextAlignment="Center"/>
 
-                            <Grid Grid.Row="6" Padding="0,-10,0,0">
-                                <Button Text="subir"  CornerRadius="20" BackgroundColor="#1287BC" 
-                                    Margin="60,40" FontAttributes="Bold" HeightRequest="45"  TextColor="Black"
-                                    VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
-                            </Grid>
+                            <Button Text="Subir" Grid.Row="6" Padding="0,0,0,0" CornerRadius="20" BackgroundColor="#1287BC" x:Name="btnUpload"
+                                     Margin="60,40" FontAttributes="Bold" HeightRequest="45" TextColor="White" WidthRequest="600"
+                                     VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" IsEnabled="False" Clicked="OnUploadClicked"/>
+
                         </Grid>
                     </PanCake:PancakeView>
                 </StackLayout>

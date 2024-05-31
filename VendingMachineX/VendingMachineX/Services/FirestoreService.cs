@@ -153,5 +153,52 @@ namespace VendingMachineX.Services
             );
 
         }
+
+        public async Task<bool> AddMachine(Machine machine)
+        {
+            await CrossCloudFirestore.Current.Instance.Collection("Maquinas").Document(machine.SerialNumber).SetAsync(
+                new
+                {
+                    Direccion = machine.Address,
+                    Latitud = machine.Latitude,
+                    Longitud = machine.Longitude,
+                    Telefono = machine.PhoneNumber
+                });
+            var queryDoc = await CrossCloudFirestore.Current.Instance.Collection("Maquinas").Document(machine.SerialNumber).GetAsync();
+            if(queryDoc.Exists)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public async Task<int> GetProductsCount(String serialNumber)
+        {
+            var query = await CrossCloudFirestore.Current.Instance.Collection("Maquinas").Document(serialNumber).Collection("Productos").GetAsync();
+            return query.Count;
+        }
+
+        public async Task AddProducts(String serialNumber, Product product)
+        {
+            String path = "Producto" + product.Position;
+            try
+            {
+                await CrossCloudFirestore.Current.Instance.Collection("Maquinas").Document(serialNumber).Collection("Productos").Document(path).SetAsync(
+                    new
+                    {
+                        Cantidad = product.Quantity,
+                        Nombre = product.Name,
+                        Posicion = product.Position,
+                        Precio = product.Price
+                    }
+                );
+            }catch ( Exception ex )
+            {
+                throw ex;
+            }
+        }
     }
 }

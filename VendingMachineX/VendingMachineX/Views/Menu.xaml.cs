@@ -68,9 +68,8 @@ namespace VendingMachineX
             GeolocationRequest request = new GeolocationRequest(GeolocationAccuracy.Best);
             Location location = await Geolocation.GetLocationAsync(request);
             Position position = new Position(location.Latitude, location.Longitude);
-            maps.MoveToRegion(MapSpan.FromCenterAndRadius(position, Distance.FromMeters(500)));
+            maps.MoveToRegion(MapSpan.FromCenterAndRadius(position, Distance.FromMeters(100000)));
         }
-
         private void OnPinClicked(object sender, PinClickedEventArgs e)
         {
             lblAddress.Text = $"Ubicación: {e.Pin.Position.Latitude}, {e.Pin.Position.Longitude}";
@@ -87,7 +86,6 @@ namespace VendingMachineX
             {
                 task.Status = false;
                 await viewModel.MarkAsCompleted(task);
-                await viewModel.LoadTask();
             }
         }
     }

@@ -28,7 +28,13 @@ namespace VendingMachineX
         private async void Products(object sender, EventArgs e)
         {
             // Aquí es donde se realiza la navegación a la otra página
-            await Navigation.PushAsync(new Products());
+            await Navigation.PushAsync(new Products(serialNumber));
+        }
+
+        private async void NewMachine(object sender, EventArgs e)
+        {
+            // Aquí es donde se realiza la navegación a la otra página
+            await Navigation.PushAsync(new NewMachine());
         }
 
         protected async override void OnAppearing()

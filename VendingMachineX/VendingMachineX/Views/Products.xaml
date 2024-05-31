@@ -4,7 +4,13 @@
              x:Class="VendingMachineX.Products"
              BackgroundColor="#1287BC"   
              xmlns:PanCake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:viewModel="clr-namespace:VendingMachineX.ViewModels;assembly=VendingMachineX"
              NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.BindingContext>
+        <viewModel:ProductsViewModel/>
+    </ContentPage.BindingContext>
+    
     <ContentPage.Content>
         <StackLayout>
             <Grid RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="0">
@@ -13,7 +19,7 @@
                         <Grid ColumnDefinitions="*,Auto" BackgroundColor="#61CAFA" 
                               HorizontalOptions="FillAndExpand" Margin="0,0,0,0">
                             <Image Source="fondoHA" HorizontalOptions="End"/>
-                            <Label Text="PRODUCTOS" Padding="20,35,0,0" FontSize="Subtitle" TextColor="Black"/>
+                            <Label Text="PRODUCTOS" Padding="20,35,0,0"   FontSize="20" TextColor="Black"/>
                         </Grid>
                     </PanCake:PancakeView>
                 </StackLayout>
@@ -24,21 +30,17 @@
                         <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" Padding="60,55,60,10" BackgroundColor="White" HeightRequest="400">
                             <!-- Row 0 -->
 
-                            <Label Text="Productos" TextColor="Black" FontSize="17" 
-                               FontAttributes="Bold" HorizontalTextAlignment="Start"
-                               HorizontalOptions="StartAndExpand" Padding="-40,-5,0,0"/>
-
-                            <Grid Grid.Row="0" Padding="0,30,0,0">
-                                <Picker Title="Selecciona una máquina" HorizontalTextAlignment="Center"/>
-                            </Grid>
+                            <Label TextColor="Black" FontSize="17"
+                                   FontAttributes="Bold" HorizontalTextAlignment="Start"
+                                   HorizontalOptions="Center" Padding="0,-5,0,20" x:Name="Maquina"/>
 
                             <Label Grid.Row="1" 
                                     Text="Nombre del producto" FontSize="14" TextColor="Black"
                                     HorizontalOptions="Start" VerticalOptions="Center"/>
 
                             <Entry Grid.Row="1"  
-                                    HorizontalOptions="End" VerticalOptions="Center"
-                                    IsReadOnly="False" WidthRequest="90"/>
+                                    HorizontalOptions="End" VerticalOptions="Center" HorizontalTextAlignment="Center"
+                                    IsReadOnly="False" WidthRequest="90" x:Name="txtNombreP"/>
 
                             <!-- Row 1 -->
                             <Label Grid.Row="2"  
@@ -46,8 +48,8 @@
                                     HorizontalOptions="Start" VerticalOptions="Center"/>
 
                             <Entry Grid.Row="2"  
-                                    HorizontalOptions="End" VerticalOptions="Center"
-                                    IsReadOnly="False"  WidthRequest="90"/>
+                                    HorizontalOptions="End" VerticalOptions="Center" HorizontalTextAlignment="Center" Keyboard="Numeric"
+                                    IsReadOnly="False"  WidthRequest="90" x:Name="txtCantidad"/>
 
                             <!-- Row 2 -->
                             <Label Grid.Row="3"
@@ -55,21 +57,21 @@
                                     HorizontalOptions="Start" VerticalOptions="Center"/>
 
                             <Entry Grid.Row="3"  
-                                    HorizontalOptions="End" VerticalOptions="Center"
+                                    HorizontalOptions="End" VerticalOptions="Center" x:Name="txtPosicion" Keyboard="Numeric"
                                     IsReadOnly="False" WidthRequest="90" HorizontalTextAlignment="Center"/>
 
                             <!-- Row 3 -->
                             <Label Grid.Row="4" 
-                                    Text="Precio" FontSize="14" TextColor="Black"
+                                    Text="Precio" FontSize="14" TextColor="Black" 
                                     HorizontalOptions="Start" VerticalOptions="Center"/>
 
                             <Entry Grid.Row="4"  
-                                    HorizontalOptions="End" VerticalOptions="Center"
+                                    HorizontalOptions="End" VerticalOptions="Center" x:Name="txtPrecio" Keyboard="Numeric"
                                     IsReadOnly="False" WidthRequest="90" HorizontalTextAlignment="Center"/>
 
 
                             <Grid Grid.Row="5" Padding="0,-10,0,0">
-                                <Button Text="subir"  CornerRadius="20" BackgroundColor="#1287BC" 
+                                <Button Text="subir"  CornerRadius="20" BackgroundColor="#1287BC" Clicked="OnUploadButtonClicked"
                                     Margin="60,40" FontAttributes="Bold" HeightRequest="45"  TextColor="Black"
                                     VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
                             </Grid>
