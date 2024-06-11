@@ -77,10 +77,14 @@ namespace VendingMachineX
             serialNumber = e.Pin.Tag.ToString();
         }
 
-        private async void OnItemTapped(object sender, ItemTappedEventArgs e)
+        private async void OnItemTapped(object sender, SelectionChangedEventArgs e)
         {
             var viewModel = (MenuViewModel)BindingContext;
-            MachineTask task = e.Item as MachineTask;
+            MachineTask task = new MachineTask();
+            if (e.CurrentSelection != null && e.CurrentSelection.Count > 0)
+            {
+                task = e.CurrentSelection[0] as MachineTask;
+            }
             String action = await DisplayActionSheet("Opciones", "Cancelar", null, "Marcar como completado");
             if (action == "Marcar como completado")
             {

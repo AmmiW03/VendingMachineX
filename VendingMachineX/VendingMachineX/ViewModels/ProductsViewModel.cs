@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using VendingMachineX.Models;
 using VendingMachineX.Services;
+#pragma warning disable CS4014
 
 namespace VendingMachineX.ViewModels
 {

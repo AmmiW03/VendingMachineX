@@ -12,6 +12,7 @@
         <viewModels:MachineDetailsViewModel/>
     </ContentPage.BindingContext>
 
+    <ScrollView>
     <Grid RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="0">
         <StackLayout Grid.Row="0" BackgroundColor="#61CAFA" HeightRequest="200" Margin="0,0,0,0">
             <PanCake:PancakeView Grid.Row="0" CornerRadius="0,0,0,0">
@@ -24,7 +25,7 @@
             </PanCake:PancakeView>
         </StackLayout>
         <!-- Contenido -->
-        <ScrollView>
+        
             <!-- Centro CAI, versión Beta
               Universidad Politécnica de Tecámac
               Desarrollador: Ammi Wang Almazán -->
@@ -70,35 +71,33 @@
                                         <ColumnDefinition Width="20*"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <Button Grid.Column="1" Text="Consultar" TextColor="White" CornerRadius="20"
+                                    <!--<Button Grid.Column="1" Text="Consultar" TextColor="White" CornerRadius="20"
                                             BackgroundColor="#1287BC" HeightRequest="40" BorderWidth="1"
-                                            WidthRequest="120"/>
-                                    <ImageButton Grid.Column="3" Source="descargar.png"
-                                                HeightRequest="20" WidthRequest="20" BackgroundColor="Transparent"/>
+                                            WidthRequest="120"/>-->
+                                    
                                 </Grid>
 
                                 <Grid Grid.Row="5" Padding="0,10,0,0" Margin="0,0,0,10">
-                                    <Button Text="Historial ventas" BackgroundColor="White" TextColor="Black"
-                                            BorderColor="Black" BorderWidth="1" CornerRadius="10" FontSize="12"/>
-                                    <Button Text="Historial rellenos" BackgroundColor="White" Grid.Column="1" FontSize="12"
+                                    <Button Text="Historial ventas" BackgroundColor="White" TextColor="Black" WidthRequest="120" HeightRequest="50"
+                                            BorderColor="Black" BorderWidth="1" CornerRadius="10" FontSize="12" Clicked="HistoriesS" Margin="50,0,50,0"/>
+                                    <!--<Button Text="Historial rellenos" BackgroundColor="White" Grid.Column="1" FontSize="12"
                                             TextColor="Black" BorderColor="Black" BorderWidth="1" CornerRadius="10"
-                                            HeightRequest="30"/>
+                                            HeightRequest="30" Clicked="HistoriesF"/>-->
                                 </Grid>
                                 
-                                
-
                             </Grid>
                             
                         </PanCake:PancakeView>
                     </StackLayout>
                 </Grid>
             </StackLayout>
-        </ScrollView>
+        
 
 
         <PanCake:PancakeView Grid.Row="2" CornerRadius="0,0,50,50" Margin="0,-1,0,0" BackgroundColor="White" HeightRequest="20">
             
         </PanCake:PancakeView>
-
+        
     </Grid>
+    </ScrollView>
 </ContentPage>

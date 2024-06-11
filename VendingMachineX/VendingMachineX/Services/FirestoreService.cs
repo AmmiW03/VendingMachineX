@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 using VendingMachineX.Classes;
 using VendingMachineX.ViewModels;
 using VendingMachineX.Models;
+using System.Globalization;
+using System.Text.RegularExpressions;
+using System.Linq;
+using System.Data;
 
 namespace VendingMachineX.Services
 {
@@ -199,6 +203,39 @@ namespace VendingMachineX.Services
             {
                 throw ex;
             }
+        }
+
+        public async Task<List<SalePointHistory>> ConsultHistory(String serialNumber)
+        {
+            List<SalePointHistory> history = new List<SalePointHistory>();
+            var query = await CrossCloudFirestore.Current.Instance.Collection("Maquinas").Document(serialNumber).Collection("HistorialVentas").GetAsync();
+            var exDoc = query.Documents.First();
+            int count = exDoc.Data.Count;
+            
+            for( int i = 0; i < count; i++)
+            {
+                SalePointHistory salePoint = new SalePointHistory();
+                salePoint.Id = "Producto" + (i + 1);
+                foreach (var document in query.Documents)
+                {
+                    foreach (var item in document.Data)
+                    {
+                        if(item.Key == salePoint.Id)
+                        {
+                            ProductSale productSale = new ProductSale();
+                            productSale.Date = DateTime.ParseExact(document.Id, "dd.MM.yyyy",CultureInfo.InvariantCulture);
+                            productSale.Quantity = float.Parse(item.Value.ToString());
+                            salePoint.SalePoints.Add(productSale);
+                        }
+                    }
+                }
+                history.Add(salePoint);
+            }
+            foreach (var product in history)
+            {
+                product.SalePoints = product.SalePoints.OrderBy(p => p.Date).ToList();
+            }
+            return history;
         }
     }
 }

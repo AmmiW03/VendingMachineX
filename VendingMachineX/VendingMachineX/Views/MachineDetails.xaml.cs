@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using VendingMachineX.Models;
 using VendingMachineX.ViewModels;
+using VendingMachineX.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -58,6 +59,17 @@ namespace VendingMachineX
 
             }
         }
+        private async void HistoriesS(object sender, EventArgs e)
+        {
+            // Aquí es donde se realiza la navegación a la otra página
+            await Navigation.PushAsync(new SalesHistory(serialNumber));
+        }
+        private async void HistoriesF(object sender, EventArgs e)
+        {
+            // Aquí es donde se realiza la navegación a la otra página
+            await Navigation.PushAsync(new FillHistory());
+        }
+
 
     }
 }

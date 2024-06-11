@@ -1,7 +1,8 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-//using Plugin.CloudFirestore;
+using Plugin.CloudFirestore;
+using System.Diagnostics;
 
 namespace VendingMachineX
 {

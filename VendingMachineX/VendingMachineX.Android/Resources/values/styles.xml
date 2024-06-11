@@ -13,6 +13,20 @@
     <!--<item name="colorprimarydark">#1976d2</item>-->
     <!-- coloraccent is used as the default value for colorcontrolactivated
          which is used to tint widgets -->
-    <!--<item name="coloraccent">#ff4081</item>-->
+    <!--<item name="coloraccent">#000000</item>-->
   </style>
+
+<!--<style name="ActionSheetStyle" parent="@android:style/Widget.Material.Light.ActionButton.Overflow">
+    <item name="android:background">#ECECEC</item> --><!-- Color de fondo --><!--
+    <item name="android:textColor">#333333</item> --><!-- Color del texto --><!--
+    --><!-- Otros atributos de estilo --><!--
+  </style>-->
+
+	<!--<style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+		<item name="android:windowBackground">@drawable/splash_screen</item>
+		<item name="android:windowNoTitle">true</item>
+		--><!--<item name="android:windowFullScreen">true</item>--><!--
+		<item name="android:windowContentOverlay">@null</item>
+		<item name="android:windowActionBar">true</item>
+	</style>-->
 </resources>

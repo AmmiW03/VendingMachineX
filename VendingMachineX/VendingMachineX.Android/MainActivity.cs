@@ -21,10 +21,9 @@ namespace VendingMachineX.Droid
             base.OnCreate(savedInstanceState);
 
             FirebaseApp.InitializeApp(Application.Context);
-
+            Firebase.Messaging.FirebaseMessaging.Instance.SubscribeToTopic("Notificaciones");
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-
             Xamarin.FormsGoogleMaps.Init(this, savedInstanceState);
             LoadApplication(new App());
         }

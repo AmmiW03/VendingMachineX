@@ -37,21 +37,34 @@
                 <!-- Contenido -->
                 <StackLayout Grid.Row="1" BackgroundColor="#61CAFA" Margin="0,-100,0,0">
                     <PanCake:PancakeView Grid.Row="1" CornerRadius="0,80,0,0">
-                        <Grid RowDefinitions="Auto,Auto,Auto,Auto" Padding="20,0,20,0" BackgroundColor="White" HeightRequest="350">
+                        <Grid RowDefinitions="Auto,Auto,Auto,Auto" Padding="20,0,20,0" BackgroundColor="White" HeightRequest="590">
                             <PanCake:PancakeView Grid.Row="1" CornerRadius="0,80,0,0">
-                                <ListView ItemsSource="{Binding Tasks}" ItemTapped="OnItemTapped">
+                                <!--<ListView ItemsSource="{Binding Tasks}" ItemTapped="OnItemTapped">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <TextCell Text="{Binding Machine}" Detail="{Binding Product}"/>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
-                                </ListView>
+                                </ListView>-->
+
+                                <CollectionView ItemsSource="{Binding Tasks}" Margin="20" SelectionMode="Single" SelectionChanged="OnItemTapped">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Frame Padding="10" Margin="0,0" BackgroundColor="White" CornerRadius="10" HasShadow="True" >
+                                                <StackLayout>
+                                                    <Label Text="{Binding Machine}" FontSize="18" TextColor="Black"/>
+                                                    <Label Text="{Binding Product}" FontSize="14" TextColor="Gray"/>
+                                                </StackLayout>
+                                            </Frame>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
                             </PanCake:PancakeView>
                         </Grid>
                     </PanCake:PancakeView>
                 </StackLayout>
 
-                <PanCake:PancakeView Grid.Row="2" CornerRadius="0,0,50,50" Margin="0,-1,0,0" BackgroundColor="White" HeightRequest="230" />
+                <PanCake:PancakeView Grid.Row="2" CornerRadius="0,0,50,50" Margin="0,-1,0,0" BackgroundColor="White" HeightRequest="20" />
 
             </Grid>
         </ScrollView>

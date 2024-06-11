@@ -16,5 +16,6 @@ namespace VendingMachineX.ViewModels
         Task<bool> AddMachine(Machine machine);
         Task<int> GetProductsCount(String serialNumber);
         Task AddProducts(String serialNumber, Product product);
+        Task<List<SalePointHistory>> ConsultHistory(String serialNumber);
     }
 }
