@@ -8,11 +8,11 @@
              xmlns:viewModel="clr-namespace:VendingMachineX.ViewModels;assembly=VendingMachineX"
              android:TabbedPage.ToolbarPlacement="Bottom"
              BackgroundColor="#1287BC"            
-             BarBackgroundColor="GhostWhite"
+             BarBackgroundColor="Beige"
              BarTextColor="Black"
              NavigationPage.HasNavigationBar="False">
 
-    <ContentPage Title="Avisos" IconImageSource="aviso" >
+    <ContentPage Title="Avisos" IconImageSource="aviso">
 
         <ContentPage.BindingContext>
             <viewModel:MenuViewModel/>
